@@ -1,4 +1,4 @@
-# Backend Repository for The Everytone Store
+# Backend Repository for The Everyone Store
 
 This repository contains the Spring Boot backend application for The Everytone Store.
 
