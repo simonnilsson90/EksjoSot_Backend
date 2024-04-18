@@ -20,12 +20,12 @@ public class DatasetController {
     @Autowired
     private PermissionRepository permissionRepository;
 
-    @GetMapping
+    @GetMapping("/get/all")
     public List<Dataset> getAllDatasets() {
         return datasetRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Dataset createDataset(@RequestBody Dataset dataset) {
         // Assuming your Dataset entity has been modified to include a transient permissionId field
         // Or if you're using a DTO, it would include permissionId as well
