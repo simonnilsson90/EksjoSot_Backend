@@ -28,7 +28,7 @@ public class AppSecurityConfig extends WebSecurityConfiguration {
         return http
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/", "/users/create").permitAll()
 
                         .anyRequest().authenticated()
                 )

@@ -1,5 +1,6 @@
 package Heroku.Project.Controller;
 
+import Heroku.Project.Config.AppPasswordConfig;
 import Heroku.Project.Tables.User;
 import Heroku.Project.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,15 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+
+    private final UserRepository userRepository;
+    private final AppPasswordConfig appPasswordConfig;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserController(UserRepository userRepository, AppPasswordConfig appPasswordConfig) {
+        this.userRepository = userRepository;
+        this.appPasswordConfig = appPasswordConfig;
+    }
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
@@ -22,6 +30,7 @@ public class UserController {
     @PostMapping("/create")
     public User createUser(@RequestBody User user) {
         System.out.println("Received user: " + user.toString());
+        user.setPassword(appPasswordConfig.bCryptPasswordEncoder().encode(user.getPassword()));
         return userRepository.save(user);
     }
 
