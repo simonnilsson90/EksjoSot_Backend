@@ -30,7 +30,7 @@ public class AppSecurityConfig extends WebSecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/users/create").permitAll()
 
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults())   // Override /login
                 // .httpBasic()
