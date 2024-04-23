@@ -6,6 +6,8 @@ import Heroku.Project.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,8 +31,11 @@ public class UserController {
 
     @PostMapping("/create")
     public User createUser(@RequestBody User user) {
+        LocalDateTime currentDate = LocalDateTime.now();
         System.out.println("Received user: " + user.toString());
         user.setPassword(appPasswordConfig.bCryptPasswordEncoder().encode(user.getPassword()));
+        user.setCreationDate(currentDate);
+        user.setLastLoginDate(currentDate); // Right now we save creation date here too. Later replace with when user logs in.
         return userRepository.save(user);
     }
 

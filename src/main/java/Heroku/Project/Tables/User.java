@@ -27,8 +27,8 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String userType;
-
     private String firstName;
+    private String lastName;
 
 
 
@@ -131,7 +131,7 @@ public class User implements UserDetails {
     }
 
 
-    private String lastName;
+
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime creationDate;
