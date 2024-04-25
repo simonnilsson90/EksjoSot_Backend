@@ -2,17 +2,14 @@ package Heroku.Project.Services;
 
 
 import Heroku.Project.Repo.UserRepository;
-import Heroku.Project.Tables.User;
+import Heroku.Project.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
-    private  final UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -20,18 +17,14 @@ public class UserService implements UserDetailsService {
     }
 
 
-
-
     public User findById (Long userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       return userRepository.findByUsername(username);
-
-
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
+
 
 
 
