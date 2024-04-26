@@ -4,8 +4,12 @@ package Heroku.Project.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -27,6 +31,9 @@ public class User implements UserDetails {
     @Lob
     @Column(name = "profilePicture", columnDefinition = "BLOB")
     private byte[] profilePicture;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime  creationDate;
 
 
     @Override
@@ -79,6 +86,12 @@ public class User implements UserDetails {
         this.profilePicture = profilePicture;
     }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
 
     @Override
     public boolean isAccountNonExpired() {
