@@ -23,6 +23,7 @@ public class UserController{
 
 
 @PostMapping("/create")
+@CrossOrigin(origins = "http://localhost:3000")
     public User createUser(@RequestBody User user) {
         user.setPassword(appPasswordConfig.bCryptPasswordEncoder().encode(user.getPassword()));
         user.setCreationDate(LocalDateTime.now());
