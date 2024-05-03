@@ -12,20 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfiguration {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf((csrf) -> csrf.disable())
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/users/create", "/get/all").permitAll()
-
-                        .anyRequest().permitAll()
-                )
-                .formLogin(Customizer.withDefaults())   // Override /login
-                // .httpBasic()
-
-                .build();
-    }
+   
 
     }
 
