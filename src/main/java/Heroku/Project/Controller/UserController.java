@@ -4,6 +4,7 @@ import Heroku.Project.Config.AppPasswordConfig;
 import Heroku.Project.Entity.User;
 import Heroku.Project.Repo.UserRepository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,5 +37,16 @@ public class UserController{
         return userRepository.findAll();
     }
 
+
+    @PutMapping("/edit/{id}")
+    public void editUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+
+        user.setEmail(updatedUser.getEmail());
+
+        userRepository.save(user);
+    }
+
 }
+
 
