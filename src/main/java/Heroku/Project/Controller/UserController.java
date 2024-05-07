@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/users")
 public class UserController{
 
@@ -38,7 +39,9 @@ public class UserController{
 
     private final AppPasswordConfig appPasswordConfig;
 
+    @Autowired
     private final AuthenticationManager authenticationManager;
+
 
     public UserController(UserRepository userRepository, AppPasswordConfig appPasswordConfig, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
@@ -47,21 +50,12 @@ public class UserController{
     }
 
 @PostMapping("/create")
-@CrossOrigin(origins = "http://localhost:3000")
-    public User createUser(@RequestBody User user) {
-        user.setPassword(appPasswordConfig.bCryptPasswordEncoder().encode(user.getPassword()));
-        user.setCreationDate(LocalDateTime.now());
-        return userRepository.save(user);
-    }
-
-@PostMapping("/signup")
-
-public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user)  {
+public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws Exception {
     String email = user.getEmail();
     String password = user.getPassword();
     User isEmailExist = userRepository.findByEmail(email);
     if (isEmailExist != null) {
-        //throw new Exception("Email Is Already Used With Another Account");
+        throw new Exception("Email Is Already Used With Another Account");
 
     }
     User createdUser = new User();
