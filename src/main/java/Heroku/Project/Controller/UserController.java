@@ -61,6 +61,7 @@ public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) th
     User createdUser = new User();
     createdUser.setEmail(email);
     createdUser.setPassword(passwordEncoder.encode(password));
+    createdUser.setCreationDate(LocalDateTime.now());
 
     User savedUser = userRepository.save(createdUser);
     userRepository.save(savedUser);
