@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -107,5 +108,16 @@ public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) th
         return userRepository.findAll();
     }
 
+
+    @PutMapping("/edit/{id}")
+    public void editUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+
+        user.setEmail(updatedUser.getEmail());
+
+        userRepository.save(user);
+    }
+
 }
+
 
