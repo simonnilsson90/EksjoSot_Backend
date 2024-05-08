@@ -22,8 +22,8 @@ public class DatasetController {
 
     @PostMapping("/create")
     public Dataset createDataset(@RequestBody Dataset dataset) {
-        return datasetRepository.save(dataset); // Save the Dataset with the Permission set
+        return datasetRepository.save(dataset);
     }
 
-    // Additional endpoints as needed
+
 }

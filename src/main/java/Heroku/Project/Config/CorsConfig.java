@@ -1,3 +1,4 @@
+/*
 package Heroku.Project.Config;
 
 import org.springframework.context.annotation.Bean;
@@ -14,7 +15,7 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000") // Replace with your frontend URL
+                .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true);
@@ -36,3 +37,6 @@ public class CorsConfig implements WebMvcConfigurer {
         return new CorsFilter(source);
     }
 }
+
+
+ */
