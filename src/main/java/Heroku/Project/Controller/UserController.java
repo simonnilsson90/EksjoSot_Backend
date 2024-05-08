@@ -1,6 +1,5 @@
 package Heroku.Project.Controller;
 
-import Heroku.Project.Config.AppPasswordConfig;
 import Heroku.Project.Config.JwtProvider;
 import Heroku.Project.Entity.User;
 import Heroku.Project.Repo.UserRepository;
@@ -15,7 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 
@@ -39,15 +37,14 @@ public class UserController{
     @Autowired
     private UserService userService;
 
-    private final AppPasswordConfig appPasswordConfig;
+
 
     @Autowired
     private final AuthenticationManager authenticationManager;
 
 
-    public UserController(UserRepository userRepository, AppPasswordConfig appPasswordConfig, AuthenticationManager authenticationManager) {
+    public UserController(UserRepository userRepository, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
-        this.appPasswordConfig = appPasswordConfig;
         this.authenticationManager = authenticationManager;
     }
 

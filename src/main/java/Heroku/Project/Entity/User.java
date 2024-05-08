@@ -4,15 +4,15 @@ package Heroku.Project.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 
+@Data
 @Entity
 @Table(name = "`users`")
 
@@ -46,8 +46,6 @@ public class User implements UserDetails {
                 '}';
     }
 
-
-    // Remove this when we implement username
     @Override
     public String getUsername() {
         return getEmail();
