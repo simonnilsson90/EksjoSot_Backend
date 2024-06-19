@@ -8,7 +8,7 @@ Before you install and run the backend application, ensure your system meets the
 
 - **Java**: JDK 17 or newer.
 - **Maven**: Maven 3.6 or higher.
-- **Database**: PostgreSQL 16 or higher. Make sure you have PostgreSQL installed and running on your system.
+- **Database**: MySQL 8 or higher. Make sure you have MySQL installed and running on your system, recommended to download MySQL Workbench.
 - **IDE**: Any preferred IDE that supports Java, Maven, and Spring Boot (e.g., IntelliJ IDEA, Eclipse).
 - **Git**: For cloning and version control.
 
